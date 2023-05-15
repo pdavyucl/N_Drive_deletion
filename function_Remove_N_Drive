@@ -1,0 +1,60 @@
+function Remove_N_Drive{
+param($n_Drive_to_Delete)
+
+#Date of run
+$RunDate=get-date -format "yyyyMMdd"
+
+#DFSbase path
+$DFSNameSpace="\\home.cfs.ucl.ac.uk\vol"
+
+#Log location
+$logdir = "\\ad.ucl.ac.uk\admin\tools\logs\HIS\Delete_N_Drives"
+$extension=".csv"
+$outfile=$logdir+"\"+$RunDate+$extension
+
+#testHome="utnvpda"
+$testHome="utnvpda"
+
+#Log start of Fnction
+$RunTime+","+$testHome+",Script started" | out-file -filepath $outfile -Append
+
+#Base Search
+$Base_path="\\10.28.4.5\c$\vol"
+
+#Loop through each Home volume (01 to 20) formatted
+(1..20) |% {
+    #Incrment i with 2 digit format
+    $i = '{0:d2}' -f $_
+    #Cretae run date_time mmddyy_hhmm
+    $RunTime=$RunDate+(get-date -format "_HHmm")
+        #Create test path
+    $Test_Folder=$Base_path+$i+"\"+$testHome
+
+    if (Test-Path -Path $Test_Folder)
+        {
+        "Path exists!" 
+        #Action upon finding S drive      
+        Get-ChildItem -path $Test_Folder -recurse
+        #update log file
+        $RunTime+","+$Test_Folder+",Folder Contents deleted" | out-file -filepath $outfile -Append
+        Send-MailMessage  -SMTPServer isd-smtp.ucl.ac.uk -To p.davy@ucl.ac.uk -From noreply@ucl.ac.uk -Subject "Delete N drive script run" -Body "Done"
+        
+        #Remove DFSnFolderTarget
+        $User_dfsn_Folder_Target=$DFSNameSpace+$i+"$\"+$testHome
+        #Remove-DfsnFolderTarget -Path $User_dfsn_Folder_Target -TargetPath '\\ad.ucl.ac.uk\HomeA\utnvpda'
+        $RunTime+","+$Test_Folder+",Dfsn Folder target deleted" | out-file -filepath $outfile -Append
+
+        #Remove Item
+
+        #Remove-Item 'D:\temp\Test Folder' -Recurse
+        $RunTime+","+$Test_Folder+",n Drive Folder target deleted" | out-file -filepath $outfile -Append
+
+        #breaks out after a find to save time
+        break
+        }
+        else
+        {
+        "Path doesn't exist."
+        }
+    }
+}
