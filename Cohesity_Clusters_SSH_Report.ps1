@@ -44,9 +44,9 @@ foreach($Cluster in $CohesityClusters )  {
     #Connect server with SSH
     ##ssh support@$Cluster -password $credential_cohesity_support
 
-    #SOurce of this https://stackoverflow.com/questions/54923868/ssh-using-powershell-script-by-passing-the-password-along-with-the-commnad
-    $ComputerName = $Cluster
-    $SessionID = New-SSHSession -ComputerName $ComputerName -Credential $credential_cohesity_support #Connect Over SSH
+    #Source of this https://stackoverflow.com/questions/54923868/ssh-using-powershell-script-by-passing-the-password-along-with-the-commnad
+    #Connect Over SSH
+    $SessionID = New-SSHSession -ComputerName $Cluster -Credential $credential_cohesity_support 
     
     #cli commands set up
     #total_backlog
@@ -56,7 +56,7 @@ foreach($Cluster in $CohesityClusters )  {
     #Node_disk_usage
     $Node_disk_usage="allssh.sh df -h"
 
-    #Rn actual copmmands output to variables
+    #Run actual copmmands output to variables
     $total_backlog_output=Invoke-SSHCommand -Index $SessionID.Sessionid -Command $total_backlog
     $individual_job_backlog_output=Invoke-SSHCommand -Index $SessionID.Sessionid -Command $individual_job_backlog
     $Node_disk_usage_output=Invoke-SSHCommand -Index $SessionID.Sessionid -Command $Node_disk_usage
