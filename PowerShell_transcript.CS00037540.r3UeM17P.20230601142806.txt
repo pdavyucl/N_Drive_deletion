@@ -1,0 +1,29 @@
+**********************
+PowerShell transcript start
+Start time: 20230601142806
+Username: AD\utnvpda
+RunAs User: AD\utnvpda
+Configuration Name: 
+Machine: CS00037540 (Microsoft Windows NT 10.0.19044.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll -noexit -command try { . "c:\Users\utnvpda\AppData\Local\Programs\Microsoft VS Code\resources\app\out\vs\workbench\contrib\terminal\browser\media\shellIntegration.ps1" } catch {}
+Process ID: 21700
+PSVersion: 7.3.4
+PSEdition: Core
+GitCommitId: 7.3.4
+OS: Microsoft Windows 10.0.19044
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.10032.0, 6.0.0, 6.1.0, 6.2.0, 7.0.0, 7.1.0, 7.2.0, 7.3.4
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+Transcript started, output file is \\ad.ucl.ac.uk\homea\utnvpda\Documents\PowerShell_transcript.CS00037540.r3UeM17P.20230601142806.txt
+]633;E;Start-Transcript ]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cutnvpdaPS C:\Users\utnvpda> ]633;B
+PS>ssh support@128.40.105.33
+
+]633;E;ssh support@128.40.105.33]633;D;0]633;A]633;P;Cwd=C:\x5cUsers\x5cutnvpdaPS C:\Users\utnvpda> ]633;B
+PS>Stop-Transcript
+**********************
+PowerShell transcript end
+End time: 20230601142917
+**********************
