@@ -1,0 +1,52 @@
+Meeting notes Paul DAvy & Tim Purkiss
+https://ucldata.atlassian.net/browse/CIO-3834
+
+How will it be triggered?
+
+Identity answer - We know when people leave but... just a change of status.
+
+
+
+State of being but not a affirmation can be deleted. AD groups - Time period after to account user has left (Andy Glass has OU's with membership state 30/90/180/270/365) - driven by o365
+
+Identify team have Trigger for group accoutn status (not published outside ID team)
+
+Envisaged: an event to state account has "change aged" or can be "deleted". This will be in a format to be created. (not made yet).
+
+o365 has a deletion + x days before soft delete becomes hard delete
+
+2 states:
+- someone has left AD groups
+- Deletion process under review / dev to kill user account (ISD CP to plug into this as trigger) in progress. CP can delete N drive when AD account is officially killed.
+
+ 
+
+Blockers to be tested / signed off
+
+Cant just kill AD account: Reason, this would leaver orphan objects in associated systems example (HR / Fin) which would not tidy up (WIP)
+
+Does associated systems manage the deletion of accounts or leave issues ie. reporting on data linked to ex-user / object / account
+
+Timescale
+
+Pilot this term pending resources (TBC)
+
+40k accounts to tidy up (crica)
+
+ 
+
+Short term actions
+
+a list of accounts could be provided as a 1 off exercise in Ti4/1
+
+ 
+
+Retention / Policy
+
+Data retention policy - is needed. eg. if 1 > year then we (ISD CP) can use account closure data / departed data + 365 as figure. (allows a safety buffer fir time
+
+What are user's told to avoid breach of any (perceived) contract
+
+If person returns > retention period and demands data we need to be converted for this eventuality
+
+If no policy stated for past departed users with data remaining where do we stand. CAn we action deletion.
