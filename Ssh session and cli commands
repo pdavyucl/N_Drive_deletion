@@ -1,0 +1,10 @@
+ssh support@128.40.105.33
+ssh support@128.40.105.101
+ssh support@10.61.134.232
+ssh support@10.63.3.9
+
+date ; elinks -dump-width 200 http://`elinks -dump-width 200 http:0:20000 | grep Master | awk -F] '{print $2}'`/archivalz | awk '/Archival Targets/,/Archival Copy Tasks/'
+V1
+IP_PORT=$(eval elinks -dump-width 200 http:0:20000 | grep -i master | awk -F] '{print $2}'); elinks -dump-width 1000 http:$IP_PORT/backup_job | egrep Details | egrep -v 'Running/Waiting for retry' | cut -d '[' -f 1 | rev | awk '{print substr($0, index($0, $3))}' | rev | awk '{print "      - "$1" - "substr($0, index($0, $2))}' > /tmp/archiveQueue.txt; IP_PORT=$(eval elinks -dump-width 200 http:0:20000 | grep -i master | awk -F] '{print $2}'); elinks -dump-width 200 http:$IP_PORT/archivalz | awk '/Archival Copy Tasks/,/Visible links/' | egrep -v 'Visible links|References|^$|Time elapsed since copy|Archival Copy Tasks' | awk '{print $1" - "$5" - "$4}' | tr -s [:space:] | sort | uniq -c >> /tmp/archiveQueue.txt; cat /tmp/archiveQueue.txt | sort -k 2 -r
+V 2
+IP_PORT=$(eval elinks -dump-width 200 http:0:20000 | grep -i master | awk -F] '{print $2}'); elinks -dump-width 1000 http:$IP_PORT/backup_job | egrep Details | egrep -v 'Running/Waiting for retry' | cut -d '[' -f 1 | rev | awk '{print substr($0, index($0, $3))}' | rev | awk '{print "   - "$1" - "substr($0, index($0, $2))}' > /tmp/archiveQueue.txt; IP_PORT=$(eval elinks -dump-width 200 http:0:20000 | grep -i master | awk -F] '{print $2}'); elinks -dump-width 200 http:$IP_PORT/archivalz | awk '/Archival Copy Tasks/,/Visible links/' | egrep -v 'Visible links|References|^$|Time elapsed since copy|Archival Copy Tasks' | awk '{print $1" - "$5" - "$4}' | tr -s [:space:] | sort | uniq -c >> /tmp/archiveQueue.txt; cat /tmp/archiveQueue.txt | sort -k 2 -r | egrep -C 1 '  [0-9]'
