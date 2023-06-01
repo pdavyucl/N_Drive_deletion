@@ -25,7 +25,7 @@ $Base_path="\\10.28.4.5\c$\vol"
 (1..20) |% {
     #Incrment i with 2 digit format
     $i = '{0:d2}' -f $_
-    #Cretae run date_time mmddyy_hhmm
+    #Create run date_time mmddyy_hhmm
     $RunTime=$RunDate+(get-date -format "_HHmm")
         #Create test path
     $Test_Folder=$Base_path+$i+"\"+$testHome
